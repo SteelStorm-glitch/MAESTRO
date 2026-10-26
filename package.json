@@ -1,0 +1,39 @@
+{
+  "name": "maestro",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MAESTRO — local AI orchestra conductor",
+  "scripts": {
+    "dev": "pnpm --parallel -r --filter @maestro/server --filter @maestro/web dev",
+    "dev:web": "pnpm --filter @maestro/web dev",
+    "dev:server": "pnpm --filter @maestro/server dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "dist:win": "node scripts/build-portable.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.5",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.19.1",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "node-pty",
+      "esbuild",
+      "electron"
+    ]
+  }
+}

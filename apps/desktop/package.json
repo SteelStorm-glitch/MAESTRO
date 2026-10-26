@@ -1,0 +1,16 @@
+{
+  "name": "@maestro/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MAESTRO desktop shell (Electron)",
+  "author": "MAESTRO",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0"
+  }
+}

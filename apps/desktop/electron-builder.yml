@@ -1,0 +1,35 @@
+appId: studio.maestro.orchestra
+productName: MAESTRO
+copyright: MAESTRO
+
+directories:
+  output: ../../release
+  buildResources: build
+
+files:
+  - main.cjs
+  - package.json
+  - build/icon.ico
+
+extraResources:
+  - from: ../../build/portable-staging/server
+    to: server
+    filter:
+      - '**/*'
+  - from: ../../build/portable-staging/web
+    to: web
+  - from: ../../build/portable-staging/runtime
+    to: runtime
+  - from: build/icon.ico
+    to: icon.ico
+
+asar: true
+compression: maximum
+npmRebuild: false
+
+win:
+  icon: build/icon.ico
+  target:
+    - target: dir
+      arch:
+        - x64

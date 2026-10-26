@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #0a0a0b;
+  --bg-panel: #101013;
+  --bg-elevated: #17171a;
+  --bg-active: #1f1f24;
+  --border: #232329;
+  --text-primary: #f4f4f5;
+  --text-dim: #9c9ca5;
+  --text-faint: #5c5c66;
+  --accent: #8b8bf5;
+  --danger: #e5484d;
+  --ok: #46a758;
+  --warn: #ffb224;
+  --radius: 6px;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a31;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #373740;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded px-2.5 py-1.5 text-[12px] font-medium text-dim transition-colors;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-active);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .btn-primary:hover {
+    background: #7b7be8;
+    color: #fff;
+  }
+  .btn-ghost {
+    background: transparent;
+    border-color: transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--bg-elevated);
+  }
+  .btn-danger {
+    color: var(--danger);
+    border-color: #3a2022;
+    background: transparent;
+  }
+  .btn-danger:hover {
+    background: #2a1416;
+    color: #ff6b70;
+  }
+  .input {
+    @apply w-full rounded px-2.5 py-1.5 text-[13px] text-primary outline-none;
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+  }
+  .input:focus {
+    border-color: #3a3a46;
+  }
+  .input::placeholder {
+    color: var(--text-faint);
+  }
+  .label {
+    @apply mb-1 block text-[11px] font-medium uppercase tracking-wide text-faint;
+  }
+  .panel {
+    background: var(--bg-panel);
+    border-color: var(--border);
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] text-dim;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+  }
+  .icon-btn {
+    @apply inline-flex h-7 w-7 items-center justify-center rounded text-dim transition-colors;
+  }
+  .icon-btn:hover {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .divider {
+    height: 1px;
+    background: var(--border);
+  }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes flash-file {
+  0% {
+    background: rgba(139, 139, 245, 0.28);
+  }
+  100% {
+    background: transparent;
+  }
+}
+.file-flash {
+  animation: flash-file 1.5s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fade-in 0.16s ease-out;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+.cursor-blink::after {
+  content: '▍';
+  color: var(--accent);
+  animation: pulse-dot 1s steps(2, start) infinite;
+  margin-left: 1px;
+}
+
+/* CodeMirror */
+.cm-editor {
+  height: 100%;
+  background: var(--bg-base);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.cm-editor .cm-gutters {
+  background: var(--bg-base);
+  border-right: 1px solid var(--border);
+  color: var(--text-faint);
+}
+.cm-editor .cm-activeLine {
+  background: rgba(255, 255, 255, 0.025);
+}
+.cm-editor .cm-activeLineGutter {
+  background: rgba(255, 255, 255, 0.03);
+}
+.cm-editor.cm-focused {
+  outline: none;
+}
+.cm-scroller {
+  overflow: auto;
+}
+
+/* xterm */
+.xterm-viewport {
+  background-color: var(--bg-base) !important;
+}
+
+.resizable-handle {
+  background: var(--border);
+  transition: background 0.15s;
+}
+.resizable-handle:hover,
+.resizable-handle[data-resize-handle-active] {
+  background: #3a3a46;
+}
